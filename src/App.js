@@ -1,19 +1,29 @@
-import React, { Component } from 'react'
-import { Cards, Chart,CountryPicker} from './components'
-import styles from './App.module.css'
+import React, { Component } from "react";
+import { Cards, Chart, CountryPicker } from "./components";
+import styles from "./App.module.css";
+import { fetchData } from "./api";
 
+class App extends Component {
+  state = {
+    data: {}
+  };
 
-export class App extends Component {
+  async componentDidMount() {
+    const fetchedData = await fetchData();
+    this.setState({data:fetchedData});
+  }
+
   render() {
+    const { data } = this.state;
+
     return (
-      <div>
-        <h1>App</h1>
-        <Cards></Cards>
-        <Chart></Chart>
-        <CountryPicker></CountryPicker>
+      <div className={styles.container}>
+        <Cards data={data}/>
+        <Chart/>
+        <CountryPicker/>
       </div>
-    )
+    );
   }
 }
 
-export default App
+export default App;
