@@ -3,6 +3,7 @@ import { Cards, Chart, CountryPicker } from "./components";
 import styles from "./App.module.css";
 import { fetchData } from "./api";
 import covidImg from './images/covid.png'
+import Footer from "./components/Footer/Footer"
 
 class App extends Component {
   state = {
@@ -30,6 +31,7 @@ class App extends Component {
         <Cards data={data}/>
         <CountryPicker handleCountryChange={this.handleCountryChange}/>
         <Chart data={data} country={country}/>
+        <Footer/>
         </div>
     );
   }
